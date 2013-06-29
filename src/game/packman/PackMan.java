@@ -62,7 +62,7 @@ public class PackMan extends Game {
         //g.drawImage(packman, 0, 0, null);
         g.setColor(Color.red);
         g.drawRect(0, 0, width, height);
-        g.drawImage(packman.getSubimage(frame * 30, 0, 28, 28), x, y, null);
+        g.drawImage(packman.getSubimage((frame/2) * 30, (dir-37)*30, 28, 28), x, y, null);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class PackMan extends Game {
     @Override
     public void update() {
         frame++;
-        if (frame > 2) {
+        if (frame > 5) { //to low speed
             frame = 0;
         }
 
@@ -94,7 +94,7 @@ public class PackMan extends Game {
                 y += STEP;
                 break;
         }
-
+// limit the movement area
         if (x < 0) {
             x = 0;
         }
