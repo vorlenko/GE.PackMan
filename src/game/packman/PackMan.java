@@ -44,7 +44,8 @@ public class PackMan extends Game {
     public PackMan() {
         //load the lines
         try {
-            Scanner s = new Scanner(new File("src/maze.txt"));
+            
+            Scanner s = new Scanner(new File("src/mazes/maze.txt"));
             int r = 0;
             while (s.hasNextLine()) {
                 String line = s.nextLine();
@@ -60,7 +61,7 @@ public class PackMan extends Game {
             rows = lines.size();
             columns = lines.get(0).length();
 
-            width = columns * STEP;
+            width = columns * STEP+28;
             height = rows * STEP;
 
         } catch (FileNotFoundException ex) {
@@ -108,13 +109,13 @@ public class PackMan extends Game {
             for (int c = 0; c < columns; c++) {
                 if (charAt(r, c) != '0') {
                     //g.fillRect(c * STEP, r * STEP, STEP, STEP);
-                    g.fillRect(c * STEP-14, r * STEP-14, 28, 28);
+                    g.fillRect(c * STEP, r * STEP-14, 28, 28);
                 }
             }
         }
 
 
-        g.drawImage(packman.getSubimage((frame / 2) * 30, (curDir - 37) * 30, 28, 28), column * STEP - 14, row * STEP - 14, null);
+        g.drawImage(packman.getSubimage((frame / 2) * 30, (curDir - 37) * 30, 28, 28), column * STEP, row * STEP - 14, null);
     }
 
     @Override
@@ -142,6 +143,7 @@ public class PackMan extends Game {
             move(curDir);
         }
         // limit the movement area
+        /*
         if (column < 0) {
             column = 0;
         }
@@ -154,6 +156,7 @@ public class PackMan extends Game {
         if (row > height - 28 - STEP) {
             row = height - 28 - STEP;
         }
+        * */
     }
     static int SUCCESS = 1, FAIL = 0;
 
